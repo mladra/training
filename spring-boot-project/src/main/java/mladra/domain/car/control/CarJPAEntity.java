@@ -1,9 +1,14 @@
 package mladra.domain.car.control;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "CARS")
+@Getter
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 class CarJPAEntity {
 
     @Id
@@ -22,23 +27,4 @@ class CarJPAEntity {
     @Column
     private String brand;
 
-    String getId() {
-        return id;
-    }
-
-    int getProductionYear() {
-        return productionYear;
-    }
-
-    int getHorsePower() {
-        return horsePower;
-    }
-
-    String getModel() {
-        return model;
-    }
-
-    String getBrand() {
-        return brand;
-    }
 }
