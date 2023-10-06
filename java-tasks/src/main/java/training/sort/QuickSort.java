@@ -6,38 +6,37 @@ class QuickSort implements SortingAlgorithm {
 
     @Override
     public int[] sort(int[] array) {
-        return quickSort(array);
-    }
-
-    private static int[] quickSort(int[] array) {
         int[] copy = Arrays.copyOf(array, array.length);
-        quickSort(copy, 0, copy.length);
+        quickSort(copy, 0, copy.length - 1);
         return copy;
     }
 
-    private static void quickSort(int[] array, int low, int high) {
-        if (array == null || array.length == 0) return;
+    private void quickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int partitionIndex = partition(array, low, high);
+            quickSort(array, low, partitionIndex - 1);
+            quickSort(array, partitionIndex + 1, high);
+        }
+    }
 
-        int pivot = (high - low) / 2 + low;
-        int pivotValue = array[pivot];
+    private int partition(int[] arr, int begin, int end) {
+        int pivot = arr[end];
+        int i = (begin - 1);
 
-        int i = low;
-        int j = high;
-        while (i <= j) {
-            while (array[i] < pivotValue) {
+        for (int j = begin; j < end; j++) {
+            if (arr[j] <= pivot) {
                 i++;
-            }
 
-            while (array[j] >= pivotValue) {
-                j--;
+                int swapTemp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = swapTemp;
             }
-
-            int value = array[i];
-            array[i] = array[j];
-            array[j] = value;
         }
 
-        quickSort(array, low, pivot);
-        quickSort(array, pivot, high);
+        int swapTemp = arr[i + 1];
+        arr[i + 1] = arr[end];
+        arr[end] = swapTemp;
+
+        return i + 1;
     }
 }
