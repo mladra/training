@@ -7,9 +7,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-boot-project</artifactId>
+    <artifactId>car-info-service</artifactId>
     <packaging>jar</packaging>
-    <name>Spring Boot Project</name>
+    <name>Car Info Service</name>
 
     <dependencies>
         <dependency>

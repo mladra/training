@@ -16,7 +16,7 @@
 
     <modules>
         <module>java-tasks</module>
-        <module>spring-boot-project</module>
+        <module>car-industry</module>
     </modules>
 
     <properties>

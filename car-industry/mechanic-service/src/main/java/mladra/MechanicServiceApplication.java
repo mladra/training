@@ -1,0 +1,13 @@
+package mladra;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
+
+@SpringBootApplication(exclude = {ErrorMvcAutoConfiguration.class})
+public class MechanicServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(MechanicServiceApplication.class, args);
+    }
+}

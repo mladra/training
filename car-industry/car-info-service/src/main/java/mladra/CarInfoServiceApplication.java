@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 
 @SpringBootApplication(exclude = {ErrorMvcAutoConfiguration.class})
-public class Application {
+public class CarInfoServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(CarInfoServiceApplication.class, args);
     }
 
 }
