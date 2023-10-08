@@ -1,0 +1,16 @@
+server:
+  port: 8079
+
+spring:
+  datasource:
+    username: sa
+    password: password
+    url: jdbc:h2:file:./car-industry/db/authorization-service-db;DB_CLOSE_ON_EXIT=FALSE
+
+keycloak:
+  server:
+    contextPath: /auth
+    adminUser:
+      username: authorization-service-admin
+      password: admin
+    realmImportFile: car-industry-realm.json
