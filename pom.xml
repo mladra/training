@@ -28,6 +28,7 @@
         <lombok.version>1.18.30</lombok.version>
         <keycloak.version>22.0.0</keycloak.version>
         <resteasy-jackson2-provider.version>6.2.4.Final</resteasy-jackson2-provider.version>
+        <oauth20-oidc-sdk.version>8.19</oauth20-oidc-sdk.version>
     </properties>
 
     <dependencyManagement>
@@ -62,6 +63,12 @@
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-rest-admin-ui-ext</artifactId>
                 <version>${keycloak.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nimbusds</groupId>
+                <artifactId>oauth2-oidc-sdk</artifactId>
+                <version>${oauth20-oidc-sdk.version}</version>
+                <scope>runtime</scope>
             </dependency>
 
             <!-- test dependencies -->

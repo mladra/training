@@ -1,3 +1,8 @@
+server:
+  port: 8080
+  error:
+    include-message: ALWAYS
+
 spring:
   datasource:
     url: jdbc:h2:file:./car-industry/db/car-info-service-db
@@ -13,6 +18,10 @@ spring:
     hibernate:
       ddl-auto: update
 
-server:
-  error:
-    include-message: ALWAYS
+  security:
+    oauth2:
+      car-info-service:
+        opaque:
+          introspection-uri: http://localhost:8079/auth/realms/car-industry/protocol/openid-connect/token/introspect
+          introspection-client-id: car-info-service-client
+          introspection-client-secret: car-info-service-secret

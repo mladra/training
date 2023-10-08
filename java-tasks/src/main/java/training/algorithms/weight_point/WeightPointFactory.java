@@ -14,4 +14,8 @@ public final class WeightPointFactory {
         return new WeightPointDivideAndConquer();
     }
 
+    public static WeightPoint naiveFromBothSides() {
+        return new WeightPointNaiveFromBothSides();
+    }
+
 }

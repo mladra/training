@@ -15,6 +15,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class EmbeddedKeycloakApplication extends KeycloakApplication {
 
@@ -51,19 +52,16 @@ public class EmbeddedKeycloakApplication extends KeycloakApplication {
     }
 
     private void createCarIndustryRealm() {
-        KeycloakSession session = getSessionFactory().create();
+        KeycloakSession session = KeycloakApplication.getSessionFactory().create();
         try {
             session.getTransactionManager().begin();
             RealmManager manager = new RealmManager(session);
-            if (manager.getRealm(keycloakServerProperties.getRealmName()) != null) {
-                LOG.info("Realm {} already exists. Skipping import of realm...", keycloakServerProperties.realmName);
-                return;
-            }
-            Resource lessonRealmImportFile = new ClassPathResource(keycloakServerProperties.getRealmImportFile());
-            manager.importRealm(JsonSerialization.readValue(lessonRealmImportFile.getInputStream(), RealmRepresentation.class));
+            Optional.ofNullable(manager.getRealm(keycloakServerProperties.getRealmName())).ifPresent(manager::removeRealm);
+            Resource realmImportFile = new ClassPathResource(keycloakServerProperties.getRealmImportFile());
+            manager.importRealm(JsonSerialization.readValue(realmImportFile.getInputStream(), RealmRepresentation.class));
             session.getTransactionManager().commit();
-        } catch (Exception ex) {
-            LOG.warn("Failed to import Realm json file: {}", ex.getMessage());
+        } catch (Exception exception) {
+            LOG.warn("Failed to import Realm json file: {}", exception.getMessage());
             session.getTransactionManager().rollback();
         } finally {
             session.close();

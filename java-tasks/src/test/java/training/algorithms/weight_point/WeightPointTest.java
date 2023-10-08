@@ -28,6 +28,8 @@ abstract class WeightPointTest {
                 Arguments.of(new int[]{1, 2, 100, 3, 2, 1}, -1),
                 Arguments.of(new int[]{1, 6, 1, 2, 4}, 2),
                 Arguments.of(new int[]{1, 1}, 1),
+                Arguments.of(new int[]{6, 1, 1, 1, 1, 1, 1, 1, 1}, 2),
+                Arguments.of(new int[]{10, -10, 100, 2, 2, 3, 5, 3, 4, 2, 1, 122}, 11),
                 Arguments.of(new int[]{20}, 0),
                 Arguments.of(new int[0], -1)
         );
