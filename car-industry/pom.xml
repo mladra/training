@@ -18,5 +18,6 @@
         <module>mechanic-service</module>
         <module>car-parts-supplier</module>
         <module>car-parts-factory</module>
+        <module>authorization-service</module>
     </modules>
 </project>
