@@ -16,19 +16,31 @@
 
     <modules>
         <module>java-tasks</module>
+        <module>groovy-tasks</module>
         <module>car-industry</module>
-        <module>car-industry/authorization-service</module>
     </modules>
 
     <properties>
+        <!-- Project related properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.9.3</junit.version>
+
+        <!-- Language specific dependencies versions -->
+        <groovy.version>4.0.14</groovy.version>
+
+        <!-- Plugins versions -->
         <maven.surefire.plugin.version>3.1.2</maven.surefire.plugin.version>
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
+        <gmavenplus.plugin.version>1.13.1</gmavenplus.plugin.version>
+
+        <!-- General dependencies versions -->
         <lombok.version>1.18.30</lombok.version>
         <keycloak.version>22.0.0</keycloak.version>
         <resteasy-jackson2-provider.version>6.2.4.Final</resteasy-jackson2-provider.version>
         <oauth20-oidc-sdk.version>8.19</oauth20-oidc-sdk.version>
+
+        <!-- Testing dependencies versions -->
+        <junit5.version>5.9.3</junit5.version>
+        <spock.version>2.3-groovy-4.0</spock.version>
     </properties>
 
     <dependencyManagement>
@@ -75,19 +87,45 @@
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
-                <version>${junit.version}</version>
+                <version>${junit5.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-params</artifactId>
-                <version>${junit.version}</version>
+                <version>${junit5.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.gmavenplus</groupId>
+                    <artifactId>gmavenplus-plugin</artifactId>
+                    <version>${gmavenplus.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>execute</goal>
+                                <goal>compile</goal>
+                                <goal>compileTests</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.groovy</groupId>
+                            <artifactId>groovy</artifactId>
+                            <version>${groovy.version}</version>
+                            <scope>runtime</scope>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
